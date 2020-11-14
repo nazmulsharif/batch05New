@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontEnd\PagesController;
 use App\Http\Controllers\BackEnd\UserController;
+use App\Http\Controllers\BackEnd\LogoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,6 +42,16 @@ use App\Http\Controllers\BackEnd\UserController;
   	Route::get('/edit/{id}',[UserController::class, 'edit'])->name('user.edit');
   	Route::post('/update/{id}',[UserController::class, 'update'])->name('user.update');
   	Route::get('/delete/{id}',[UserController::class, 'destroy'])->name('user.delete');
+
+  });
+  Route::prefix('logo')->group(function(){
+    Route::get('/manage',[logoController::class, 'index'])->name('logo.manage');
+    Route::get('/create',[logoController::class, 'create'])->name('logo.create');
+    Route::post('/store',[logoController::class, 'store'])->name('logo.store');
+    Route::get('/edit/{id}',[logoController::class, 'edit'])->name('logo.edit');
+    Route::post('/update/{id}',[logoController::class, 'update'])->name('logo.update');
+    Route::get('/delete/{id}',[logoController::class, 'destroy'])->name('logo.delete');
+    Route::get('statusChange/{id}/{status}',[logoController::class, 'statusChange'])->name('logo.status.change');
 
   });
 

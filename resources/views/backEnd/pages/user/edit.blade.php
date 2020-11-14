@@ -29,7 +29,7 @@
             <div class="card">
               <div class="card-header">
                 <h2 class="card-title">
-                  add user
+                  Edit user
                 </h2>
                 <a href="{{Route('user.manage')}}" class="btn btn-info float-sm-right">
                     <i class="fa fa-user"></i>
@@ -45,14 +45,14 @@
                   </button>
                 </div>
                 @endif
-                <form method="POST" action="{{ route('user.store') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('user.update', $user->id) }}" enctype="multipart/form-data">
                           @csrf
 
                           <div class="form-group row">
                               <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                               <div class="col-md-6">
-                                  <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}"  autocomplete="name" autofocus>
+                                  <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"  autocomplete="name" autofocus value="{{ $user->name }}">
 
                                   @error('name')
                                       <span class="invalid-feedback" role="alert">
@@ -66,7 +66,7 @@
                               <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                               <div class="col-md-6">
-                                  <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
+                                  <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value=" {{ $user->email}}"  autocomplete="email">
 
                                   @error('email')
                                       <span class="invalid-feedback" role="alert">
@@ -80,13 +80,18 @@
                               <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
 
                               <div class="col-md-6">
-                                  <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image" value="{{ old('image') }}"  autocomplete="image">
-
+                                  <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image" value=""  autocomplete="image">
+                                  <input type="hidden" value="{{ $user->image }}" name="old_image">
                                   @error('image')
                                       <span class="invalid-feedback" role="alert">
                                           <strong>{{ $message }}</strong>
                                       </span>
                                   @enderror
+                                  @if(isset($user->image))
+                                    <img src="{{ Storage::url($user->image) }}" alt="" width="100px">
+                                  @else
+                                     <img src="{{ asset('image/images.png') }}" alt="" width="100px">
+                                  @endif
                               </div>
                           </div>
 
@@ -94,8 +99,8 @@
                               <label for="user_type" class="col-md-4 col-form-label text-md-right">{{ __('User Type') }}</label>
 
                               <div class="col-md-6 mt-2">
-                                 <input type="radio" name ="user_type" value="super_admin"><span class="font-weight-bold">super_admin</span>
-                                 <input type="radio" name ="user_type" value="admin"><span class="font-weight-bold">admin</span>
+                                 <input type="radio" name ="user_type" value="super_admin"{{ $user->user_type == 'super_admin'? 'checked':''}} ><span class="font-weight-bold">super_admin</span>
+                                 <input type="radio" name ="user_type" value="admin"{{ $user->user_type == 'admin'? 'checked':''}}><span class="font-weight-bold">admin</span>
                                   @error('user_type')
                                       <span class="invalid-feedback" role="alert">
                                           <strong>{{ $message }}</strong>
@@ -107,8 +112,8 @@
                               <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
 
                               <div class="col-md-6 mt-2">
-                                 <input type="radio" name ="gender" value="male"><span class="font-weight-bold">Male</span>
-                                 <input type="radio" name ="gender" value="female"><span class="font-weight-bold">female</span>
+                                 <input type="radio" name ="gender" value="male"{{ $user->gender == 'male'? 'checked':''}}><span class="font-weight-bold">Male</span>
+                                 <input type="radio" name ="gender" value="female"><span class="font-weight-bold"{{ $user->gender == 'female'? 'checked':''}}>female</span>
                                   @error('gender')
                                       <span class="invalid-feedback" role="alert">
                                           <strong>{{ $message }}</strong>
@@ -117,32 +122,11 @@
                               </div>
                           </div>
 
-                          <div class="form-group row">
-                              <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                              <div class="col-md-6">
-                                  <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
-
-                                  @error('password')
-                                      <span class="invalid-feedback" role="alert">
-                                          <strong>{{ $message }}</strong>
-                                      </span>
-                                  @enderror
-                              </div>
-                          </div>
-
-                          <div class="form-group row">
-                              <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                              <div class="col-md-6">
-                                  <input id="password-confirm" type="password" class="form-control" name="password_confirmation"  autocomplete="new-password">
-                              </div>
-                          </div>
-
+                        
                           <div class="form-group row mb-0">
                               <div class="col-md-6 offset-md-4">
                                   <button type="submit" class="btn btn-primary">
-                                      {{ __('Register') }}
+                                      {{ __('Update') }}
                                   </button>
                               </div>
                           </div>

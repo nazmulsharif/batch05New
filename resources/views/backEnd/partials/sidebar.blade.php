@@ -35,7 +35,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-        
+          @if(Auth::user()->user_type == 'super_admin')
           <li class="nav-item {{ (Route::is('user.manage')||Route::is('user.create'))?'menu-open':'' }}">
             <a href="#" class="nav-link bg-info">
               <i class="nav-icon fas fa-user"></i>
@@ -57,7 +57,31 @@
                   <p>Add User</p>
                 </a>
               </li>
-              
+              @endif
+            </ul>
+          </li>
+           <li class="nav-item {{ (Route::is('logo.manage')||Route::is('logo.create'))?'menu-open':'' }}">
+            <a href="#" class="nav-link bg-info">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Logo Management
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ Route('logo.manage') }}" class="nav-link {{ Route::is('logo.manage')?'active':''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Manage Logo</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ Route('logo.create') }}" class="nav-link {{ Route::is('logo.create')?'active':''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Logo</p>
+                </a>
+              </li>
+             
             </ul>
           </li>
         

@@ -23,9 +23,19 @@
                         <img src="https://cdn.freebiesupply.com/logos/large/2x/pinterest-circle-logo-png-transparent.png" class="brand_logo" alt="Logo">
                     </div>
                 </div>
+
                 <div class="d-flex justify-content-center form_container">
                     <form method="POST" action="{{ route('login') }}">
+                        @if(session()->has('message'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                              <strong>{{session()->get('message')}}</strong>
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                        @endif
                          @csrf
+
                             <div class="input-group mb-3">
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>

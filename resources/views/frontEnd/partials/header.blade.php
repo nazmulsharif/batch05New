@@ -2,8 +2,11 @@
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center">
-
-      <h1 class="logo"><a href="{{ Route('frontEnd.home')}}">Sailor</a></h1>
+      @foreach($logo as $image)
+      <h1 class="logo"><a href="{{ Route('frontEnd.home')}}">
+        <img src="{{ Storage::url($image->image) }}" alt="">
+      </a></h1>
+      @endforeach
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="frontEnd/assets/img/logo.png" alt="" class="img-fluid"></a>-->
 

@@ -7,12 +7,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">User Management</h1>
+            <h1 class="m-0">Logo Management</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">User</li>
+              <li class="breadcrumb-item active">Logo</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -29,11 +29,11 @@
             <div class="card">
               <div class="card-header">
                 <h2 class="card-title">
-                  Manage user
+                  Manage Logo
                 </h2>
-                <a href="{{Route('user.create')}}" class="btn btn-primary float-sm-right">
+                <a href="{{Route('logo.create')}}" class="btn btn-primary float-sm-right">
                     <i class="fa fa-plus-circle"></i>
-                  Add User
+                  Add Logo
                 </a>
               </div>
               <div class="card-body">
@@ -49,31 +49,38 @@
                   <thead>
                     <tr>
                       <th>Sl</th>
-                      <th>Name</th>
-                      <th>Email</th>
+                      <th>Title</th>                    
                       <th>Image</th>
-                      <th>Role</th>
-                      <th>Gender</th>
+                      <th>User Name</th>     
+                      <th>Status</th>     
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach($users as $key=>$user)
+                    @foreach($logos as $key=>$logo)
                     <tr>
                       <td>{{ $key+1}}</td>
-                      <td>{{ $user->name }}</td>
-                      <td>{{ $user->email }}</td>
+                      <td>{{ $logo->title }}</td>
+                     
                       <td>
-                        <img src="{{ Storage::url($user->image) }}" alt="" width="100px">
+                        <img src="{{ Storage::url($logo->image) }}" alt="" width="100px">
                        
                       </td>
-                      <td>{{ $user->user_type }}</td>
-                      <td>{{ $user->gender}}</td>
                       <td>
-                        <a href="{{ Route('user.edit', $user->id) }}" class="btn btn-primary">
+                        {{ $logo->user->name}}
+                      </td>
+                      <td>
+                        @if($logo->status == true)
+                          <a href="{{asset('/')}}logo/statusChange/{{$logo->id}}/{{$logo->status}}" class="btn btn-success">published</a>
+                        @else
+                          <a href="{{ asset('/')}}logo/statusChange/{{$logo->id}}/{{$logo->status}}" class="btn btn-danger">unpublished</a>
+                        @endif
+                      </td>
+                      <td>
+                        <a href="{{ Route('logo.edit', $logo->id) }}" class="btn btn-primary">
                           <i class="fa fa-edit"></i>
                         </a>
-                        <a href="{{ Route('user.delete', $user->id) }}" class="btn btn-danger">
+                        <a href="{{ Route('user.delete', $logo->id) }}" class="btn btn-danger">
                           <i class="fa fa-trash"></i>
                         </a>
                       </td>
