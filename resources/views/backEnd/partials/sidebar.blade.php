@@ -84,6 +84,31 @@
              
             </ul>
           </li>
+           <li class="nav-item {{ (Route::is('slider.manage')||Route::is('slider.create'))?'menu-open':'' }}">
+            <a href="#" class="nav-link bg-info">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                slider Management
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ Route('slider.manage') }}" class="nav-link {{ Route::is('slider.manage')?'active':''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Manage slider</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ Route('slider.create') }}" class="nav-link {{ Route::is('slider.create')?'active':''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add slider</p>
+                </a>
+              </li>
+             
+            </ul>
+          </li>
+        
         
          
         </ul>

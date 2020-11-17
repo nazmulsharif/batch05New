@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontEnd\PagesController;
 use App\Http\Controllers\BackEnd\UserController;
 use App\Http\Controllers\BackEnd\LogoController;
+use App\Http\Controllers\BackEnd\SliderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -54,6 +55,18 @@ use App\Http\Controllers\BackEnd\LogoController;
     Route::get('statusChange/{id}/{status}',[logoController::class, 'statusChange'])->name('logo.status.change');
 
   });
+   Route::prefix('slider')->group(function(){
+    Route::get('/manage',[SliderController::class, 'index'])->name('slider.manage');
+    Route::get('/create',[SliderController::class, 'create'])->name('slider.create');
+    Route::post('/store',[SliderController::class, 'store'])->name('slider.store');
+    Route::get('/edit/{id}',[SliderController::class, 'edit'])->name('slider.edit');
+    Route::post('/update/{id}',[SliderController::class, 'update'])->name('slider.update');
+    Route::get('/delete/{id}',[SliderController::class, 'destroy'])->name('slider.delete');
+    Route::get('statusChange/{id}/{status}',[SliderController::class, 'statusChange'])->name('Slider.status.change');
+
+  });
+
+
 
 
  /*---Backend Routes End ------------ --------------------*/

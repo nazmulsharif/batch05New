@@ -5,12 +5,13 @@ namespace App\Http\Controllers\FrontEnd;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Logo;
-
+use App\Models\Slider;
 class PagesController extends Controller
 {
     public function index(){
         $logo = Logo::where('status',1)->get();
-    	return view('frontEnd.pages.home', compact('logo'));
+        $sliders = Slider::where('status', 1)->orderBy('priority','asc')->get();
+    	return view('frontEnd.pages.home', compact('logo','sliders'));
     }
     public function about(){
         $logo = Logo::where('status',1)->get();
