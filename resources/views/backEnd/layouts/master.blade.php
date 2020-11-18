@@ -33,9 +33,9 @@
   @include('backEnd.partials.sidebar')
   @yield('content')
 
-  
 
-  
+
+
 </div>
 <!-- ./wrapper -->
 
@@ -73,5 +73,6 @@
 <script src="{{asset('/')}}backEnd/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('/')}}backEnd/dist/js/pages/dashboard.js"></script>
+    @yield('scripts')
 </body>
 </html>

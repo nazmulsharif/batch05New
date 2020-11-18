@@ -5,6 +5,7 @@ use App\Http\Controllers\FrontEnd\PagesController;
 use App\Http\Controllers\BackEnd\UserController;
 use App\Http\Controllers\BackEnd\LogoController;
 use App\Http\Controllers\BackEnd\SliderController;
+use App\Http\Controllers\BackEnd\HomeAboutSectionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,7 +22,7 @@ use App\Http\Controllers\BackEnd\SliderController;
   Route::get('/',[PagesController::class,'index'])->name('frontEnd.home');
 
  Route::prefix('frontEnd')->group(function(){
- 	
+
 	 Route::get('about-us',[PagesController::class,'about'])->name('frontEnd.about_us');
 	 Route::get('services',[PagesController::class,'services'])->name('frontEnd.services');
 	 Route::get('blog',[PagesController::class,'blog'])->name('frontEnd.blog');
@@ -65,7 +66,16 @@ use App\Http\Controllers\BackEnd\SliderController;
     Route::get('statusChange/{id}/{status}',[SliderController::class, 'statusChange'])->name('Slider.status.change');
 
   });
+    Route::prefix('aboutSection')->group(function(){
+        Route::get('/manage',[HomeAboutSectionController::class, 'index'])->name('aboutSection.manage');
+        Route::get('/create',[HomeAboutSectionController::class, 'create'])->name('aboutSection.create');
+        Route::post('/store',[HomeAboutSectionController::class, 'store'])->name('aboutSection.store');
+        Route::get('/edit/{id}',[HomeAboutSectionController::class, 'edit'])->name('aboutSection.edit');
+        Route::post('/update/{id}',[HomeAboutSectionController::class, 'update'])->name('aboutSection.update');
+        Route::get('/delete/{id}',[HomeAboutSectionController::class, 'destroy'])->name('aboutSection.delete');
+        Route::get('statusChange/{id}/{status}',[HomeAboutSectionController::class, 'statusChange'])->name('Slider.status.change');
 
+    });
 
 
 

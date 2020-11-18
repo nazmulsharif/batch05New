@@ -81,7 +81,7 @@
                   <p>Add Logo</p>
                 </a>
               </li>
-             
+
             </ul>
           </li>
            <li class="nav-item {{ (Route::is('slider.manage')||Route::is('slider.create'))?'menu-open':'' }}">
@@ -105,12 +105,35 @@
                   <p>Add slider</p>
                 </a>
               </li>
-             
+
             </ul>
           </li>
-        
-        
-         
+                <li class="nav-item {{ (Route::is('aboutSection.manage')||Route::is('aboutSection.create'))?'menu-open':'' }}">
+                    <a href="#" class="nav-link bg-info">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                            AboutSection Manage
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ Route('aboutSection.manage') }}" class="nav-link {{ Route::is('aboutSection.manage')?'active':''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Manage aboutSection</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ Route('aboutSection.create') }}" class="nav-link {{ Route::is('aboutSection.create')?'active':''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add aboutSection</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

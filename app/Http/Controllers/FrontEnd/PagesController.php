@@ -6,12 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Logo;
 use App\Models\Slider;
+use App\Models\HomeAboutSection;
 class PagesController extends Controller
 {
     public function index(){
         $logo = Logo::where('status',1)->get();
         $sliders = Slider::where('status', 1)->orderBy('priority','asc')->get();
-    	return view('frontEnd.pages.home', compact('logo','sliders'));
+
+        $aboutSections =  HomeAboutSection::all();
+    	return view('frontEnd.pages.home', compact('logo','sliders', 'aboutSections'));
     }
     public function about(){
         $logo = Logo::where('status',1)->get();
