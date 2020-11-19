@@ -6,6 +6,8 @@ use App\Http\Controllers\BackEnd\UserController;
 use App\Http\Controllers\BackEnd\LogoController;
 use App\Http\Controllers\BackEnd\SliderController;
 use App\Http\Controllers\BackEnd\HomeAboutSectionController;
+use App\Http\Controllers\BackEnd\RecentWorkCategoryController;
+use App\Http\Controllers\BackEnd\RecentWorkController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -76,10 +78,31 @@ use App\Http\Controllers\BackEnd\HomeAboutSectionController;
         Route::get('statusChange/{id}/{status}',[HomeAboutSectionController::class, 'statusChange'])->name('Slider.status.change');
 
     });
+    Route::prefix('recentWorksCategory')->group(function(){
+        Route::get('/manage',[RecentWorkCategoryController::class, 'index'])->name('recentWorksCategory.manage');
+        Route::get('/create',[RecentWorkCategoryController::class, 'create'])->name('recentWorksCategory.create');
+        Route::post('/store',[RecentWorkCategoryController::class, 'store'])->name('recentWorksCategory.store');
+        Route::get('/edit/{id}',[RecentWorkCategoryController::class, 'edit'])->name('recentWorksCategory.edit');
+        Route::post('/update/{id}',[RecentWorkCategoryController::class, 'update'])->name('recentWorksCategory.update');
+        Route::get('/delete/{id}',[RecentWorkCategoryController::class, 'destroy'])->name('recentWorksCategory.delete');
+        Route::get('statusChange/{id}/{status}',[RecentWorkCategoryController::class, 'statusChange'])->name('Slider.status.change');
+
+    });
+Route::prefix('recentWorks')->group(function(){
+    Route::get('/manage',[RecentWorkController::class, 'index'])->name('recentWorks.manage');
+    Route::get('/create',[RecentWorkController::class, 'create'])->name('recentWorks.create');
+    Route::post('/store',[RecentWorkController::class, 'store'])->name('recentWorks.store');
+    Route::get('/edit/{id}',[RecentWorkController::class, 'edit'])->name('recentWorks.edit');
+    Route::post('/update/{id}',[RecentWorkController::class, 'update'])->name('recentWorks.update');
+    Route::get('/delete/{id}',[RecentWorkController::class, 'destroy'])->name('recentWorks.delete');
+    Route::get('statusChange/{id}/{status}',[RecentWorkController::class, 'statusChange'])->name('Slider.status.change');
+
+});
 
 
 
- /*---Backend Routes End ------------ --------------------*/
+
+/*---Backend Routes End ------------ --------------------*/
 
 
 

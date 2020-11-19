@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\FrontEnd;
 
 use App\Http\Controllers\Controller;
+use App\Models\RecentWork;
+use App\Models\RecentWorkCategory;
 use Illuminate\Http\Request;
 use App\Models\Logo;
 use App\Models\Slider;
@@ -11,10 +13,11 @@ class PagesController extends Controller
 {
     public function index(){
         $logo = Logo::where('status',1)->get();
+        $categories = RecentWorkCategory::where('status',1)->get();
         $sliders = Slider::where('status', 1)->orderBy('priority','asc')->get();
-
+        $recentWorks = RecentWork::where('status',1)->get();
         $aboutSections =  HomeAboutSection::all();
-    	return view('frontEnd.pages.home', compact('logo','sliders', 'aboutSections'));
+    	return view('frontEnd.pages.home', compact('logo','sliders', 'aboutSections', 'categories','recentWorks'));
     }
     public function about(){
         $logo = Logo::where('status',1)->get();

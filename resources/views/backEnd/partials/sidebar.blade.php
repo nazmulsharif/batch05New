@@ -11,10 +11,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{asset('/')}}backEnd/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ Storage::url(Auth::user()->image) }}" class="" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 
@@ -132,6 +132,31 @@
 
                     </ul>
                 </li>
+                <li class="nav-item {{ (Route::is('recentWorksCategory.manage')||Route::is('recentWorks.manage'))?'menu-open':'' }}">
+                    <a href="#" class="nav-link bg-info">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                            Recent Works Manage
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ Route('recentWorksCategory.manage') }}" class="nav-link {{ Route::is('recentWorksCategory.manage')?'active':''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>RecentWorks Category</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ Route('recentWorks.manage') }}" class="nav-link {{ Route::is('recentWorks.manage')?'active':''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Recent Works Manage</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
 
 
         </ul>
